@@ -83,7 +83,8 @@ namespace DB2VM
         private enum enum_藥袋13_1
         {
             領藥號 = 1,
-            病房 = 3,
+            病房 = 2,
+            病床 = 3,
             藥品名稱 = 4,
             總量 = 6,
             頻次 = 7,
@@ -257,6 +258,11 @@ namespace DB2VM
                     return returnData.JsonSerializationt(true);
                 }
                 if (order_ary.Length == 19)
+                {
+                    list_醫令資料[0][(int)enum_醫囑資料.病房] = orderClass.病房;
+                    sQLControl_醫囑資料.UpdateByDefulteExtra(null, list_醫令資料);
+                }
+                if (order_ary.Length == 13)
                 {
                     list_醫令資料[0][(int)enum_醫囑資料.病房] = orderClass.病房;
                     sQLControl_醫囑資料.UpdateByDefulteExtra(null, list_醫令資料);

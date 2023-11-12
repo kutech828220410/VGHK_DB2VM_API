@@ -95,7 +95,7 @@ namespace Udedspon
                     for (int i = 0; i < udedsponClasses.Count; i++)
                     {
                         OrderClass orderClass = new OrderClass();
-                        orderClass.GUID = $"{udedsponClasses[i].資料異動時戳};{udedsponClasses[i].病歷號};{udedsponClasses[i].資料種類}";
+                        orderClass.GUID = $"{udedsponClasses[i].資料異動時戳};{udedsponClasses[i].病歷號};{udedsponClasses[i].資料種類};{udedsponClasses[i].藥品碼};{udedsponClasses[i].頻次}";
                         orderClass.PRI_KEY = $"{udedsponClasses[i].病歷號};{udedsponClasses[i].就醫類別};{udedsponClasses[i].就醫序號};{udedsponClasses[i].住院序號};{udedsponClasses[i].資料異動時戳}";
                         orderClass.藥局代碼 = "PHER";
                         orderClass.藥品碼 = udedsponClasses[i].藥品碼.Trim();
@@ -113,7 +113,7 @@ namespace Udedspon
                         orderClass.產出時間 = DateTime.Now.ToDateTimeString_6();
                         orderClass.狀態 = "未調劑";
 
-                        if (orderClass.床號 == "999")
+                        if (orderClass.床號 == "999" && (orderClass.病房.ToUpper().Contains("PER") == false))
                         {
                             orderClass.病房 = "999";
                         }

@@ -962,19 +962,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Administrator\\.nuget\\packages\\": {}
+    "C:\\Users\\hsonds01\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Administrator\\Desktop\\VGHKS_DBVM\\Udedspon\\Udedspon.csproj",
+      "projectUniqueName": "C:\\Users\\hsonds01\\Source\\Repos\\VGHK_DB2VM_API\\Udedspon\\Udedspon.csproj",
       "projectName": "Udedspon",
-      "projectPath": "C:\\Users\\Administrator\\Desktop\\VGHKS_DBVM\\Udedspon\\Udedspon.csproj",
-      "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Administrator\\Desktop\\VGHKS_DBVM\\Udedspon\\obj\\",
+      "projectPath": "C:\\Users\\hsonds01\\Source\\Repos\\VGHK_DB2VM_API\\Udedspon\\Udedspon.csproj",
+      "packagesPath": "C:\\Users\\hsonds01\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\hsonds01\\Source\\Repos\\VGHK_DB2VM_API\\Udedspon\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\hsonds01\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1024,7 +1028,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.416\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.413\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.32901.82
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DB2VM_API", "DB2VM_API.csproj", "{3D52BF28-AF7D-412F-B515-75786CF96BAD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Udedspon", "Udedspon\Udedspon.csproj", "{D5C5E28D-4575-441A-AB26-EB55F633E36C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Udedspon", "Udedspon\Udedspon.csproj", "{D5C5E28D-4575-441A-AB26-EB55F633E36C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UDFTPSTK4ConsoleApp", "UDFTPSTK4ConsoleApp\UDFTPSTK4ConsoleApp.csproj", "{B04423C1-FBF6-4A01-BA51-CE47DD47EC8A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{D5C5E28D-4575-441A-AB26-EB55F633E36C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5C5E28D-4575-441A-AB26-EB55F633E36C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5C5E28D-4575-441A-AB26-EB55F633E36C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B04423C1-FBF6-4A01-BA51-CE47DD47EC8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B04423C1-FBF6-4A01-BA51-CE47DD47EC8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B04423C1-FBF6-4A01-BA51-CE47DD47EC8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B04423C1-FBF6-4A01-BA51-CE47DD47EC8A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

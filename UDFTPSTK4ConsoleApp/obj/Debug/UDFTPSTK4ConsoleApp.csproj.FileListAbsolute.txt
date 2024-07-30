@@ -30,3 +30,4 @@ C:\Users\hsonds01\source\repos\VGHK_DB2VM_API\UDFTPSTK4ConsoleApp\obj\Debug\UDFT
 C:\Users\hsonds01\source\repos\VGHK_DB2VM_API\UDFTPSTK4ConsoleApp\obj\Debug\UDFTPSTK4ConsoleApp.pdb
 C:\Users\hsonds01\source\repos\VGHK_DB2VM_API\UDFTPSTK4ConsoleApp\bin\Debug\MySql.Data.dll
 C:\Users\hsonds01\source\repos\VGHK_DB2VM_API\UDFTPSTK4ConsoleApp\bin\Debug\SQLUI.dll
+C:\Users\hsonds01\source\repos\VGHK_DB2VM_API\UDFTPSTK4ConsoleApp\bin\Debug\Newtonsoft.Json.dll

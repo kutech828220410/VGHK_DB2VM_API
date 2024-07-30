@@ -118,3 +118,4 @@ C:\Users\hsonds01\Source\Repos\VGHK_DB2VM_API\Udedspon\obj\Debug\net5.0\Udedspon
 C:\Users\hsonds01\Source\Repos\VGHK_DB2VM_API\Udedspon\obj\Debug\net5.0\ref\Udedspon.dll
 C:\Users\hsonds01\Source\Repos\VGHK_DB2VM_API\Udedspon\obj\Debug\net5.0\Udedspon.pdb
 C:\Users\hsonds01\Source\Repos\VGHK_DB2VM_API\Udedspon\obj\Debug\net5.0\Udedspon.genruntimeconfig.cache
+C:\Users\hsonds01\source\repos\VGHK_DB2VM_API\Udedspon\bin\Debug\net5.0\Newtonsoft.Json.dll

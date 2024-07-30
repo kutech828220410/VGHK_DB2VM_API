@@ -966,7 +966,6 @@ C:\Users\Administrator\Desktop\VGHKS_DBVM\bin\Debug\net5.0\Udedspon\bin\Debug\ne
 C:\Users\Administrator\Desktop\VGHKS_DBVM\bin\Debug\net5.0\Udedspon\bin\Debug\net5.0\Udedspon.runtimeconfig.json
 C:\Users\Administrator\Desktop\VGHKS_DBVM\bin\Debug\net5.0\Udedspon\obj\project.assets.json
 C:\Users\Administrator\Desktop\VGHKS_DBVM\bin\Debug\net5.0\Udedspon\obj\Udedspon.csproj.nuget.dgspec.json
-C:\Users\hsonds01\Source\Repos\VGHK_DB2VM_API\obj\Debug\net5.0\DB2VM_API.csproj.AssemblyReference.cache
 C:\Users\hsonds01\Source\Repos\VGHK_DB2VM_API\obj\Debug\net5.0\DB2VM_API.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\hsonds01\Source\Repos\VGHK_DB2VM_API\obj\Debug\net5.0\DB2VM_API.AssemblyInfoInputs.cache
 C:\Users\hsonds01\Source\Repos\VGHK_DB2VM_API\obj\Debug\net5.0\DB2VM_API.AssemblyInfo.cs
@@ -1076,5 +1075,7 @@ C:\Users\hsonds01\Source\Repos\VGHK_DB2VM_API\obj\Debug\net5.0\DB2VM_API.Views.p
 C:\Users\hsonds01\Source\Repos\VGHK_DB2VM_API\obj\Debug\net5.0\DB2VM_API.csproj.CopyComplete
 C:\Users\hsonds01\Source\Repos\VGHK_DB2VM_API\obj\Debug\net5.0\DB2VM_API.pdb
 C:\Users\hsonds01\Source\Repos\VGHK_DB2VM_API\obj\Debug\net5.0\DB2VM_API.genruntimeconfig.cache
+C:\Users\hsonds01\source\repos\VGHK_DB2VM_API\bin\Debug\net5.0\Newtonsoft.Json.dll
+C:\Users\hsonds01\Source\Repos\VGHK_DB2VM_API\obj\Debug\net5.0\DB2VM_API.csproj.AssemblyReference.cache
 C:\Users\hsonds01\Source\Repos\VGHK_DB2VM_API\bin\Debug\net5.0\UDFTPSTK4ConsoleApp\App.config
 C:\Users\hsonds01\Source\Repos\VGHK_DB2VM_API\bin\Debug\net5.0\UDFTPSTK4ConsoleApp\bin\Debug\UDFTPSTK4ConsoleApp.exe.config

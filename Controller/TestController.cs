@@ -23,29 +23,8 @@ namespace DB2VM
         public string Get()
         {
 
-            MyTimerBasic myTimer = new MyTimerBasic(50000);
-            //String MyDb2ConnectionString = "server=192.168.51.102:50000;database=DBDSNP;uid=APUD07;pwd=UD07AP;";
-            string ODBC_string = "driver={IBM DB2 ODBC DRIVER};Database=DBDSNP;Hostname=192.168.51.102;Protocol=TCPIP;Port=50000;Uid=APUD07;Pwd=UD07AP;";
 
-            try
-            {
-
-                System.Data.Odbc.OdbcConnection odbcConnection = new OdbcConnection(ODBC_string);
-                odbcConnection.Open();
-
-
-                //System.Data.Odbc.OdbcCommand MyDB2Command = odbcConnection.CreateCommand();
-                //MyDB2Command.CommandText = "SELECT * FROM UD.UDGETLOG WHERE HID='1A0'";
-
-                //var reader = MyDB2Command.ExecuteReader();
-                odbcConnection.Close();
-            }
-            catch(Exception e)
-            {
-                return $"{ODBC_string}\n{e.Message}";
-            }
-
-            return $"DB2 Connecting sucess! , {ODBC_string}";
+            return $"API Connecting sucess!";
 
 
         }

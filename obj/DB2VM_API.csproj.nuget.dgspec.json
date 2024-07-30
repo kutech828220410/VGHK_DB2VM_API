@@ -43,6 +43,10 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "Microsoft.Data.SqlClient": {
+              "target": "Package",
+              "version": "[5.2.1, )"
+            },
             "MySql.Data": {
               "target": "Package",
               "version": "[8.0.29, )"
@@ -58,6 +62,10 @@
             "System.Data.Odbc": {
               "target": "Package",
               "version": "[6.0.0, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.6, )"
             },
             "System.Text.Json": {
               "target": "Package",

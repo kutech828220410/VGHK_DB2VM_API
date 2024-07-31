@@ -52,6 +52,13 @@ namespace DB2VM_API
             }
 
         }
+        public class drug_class
+        {
+            public string 藥碼 = "";
+            public string 藥名 = "";
+            public string 藥師證字 = "";
+            public string 管制級別 = "";
+        }
         public class cdmis_class
         {
             public string 藥碼 = "";
@@ -261,7 +268,37 @@ namespace DB2VM_API
 
                 string connectionString = "Server=192.168.222.19;Database=CabinetDB_new;User Id=Cabinet_new;Password=Cabinet_new;";
                 string query = $"SELECT * FROM TransLog WHERE (MedicalRecordNo != '取消交易' AND MedicalRecordNo != '誤開抽屜' AND MedicalRecordNo != '修改藥名' AND MedicalRecordNo != '')AND (TransTime >= '{date1}' AND TransTime <= '{date2}');";
+                string query_drug = $"SELECT * FROM DrugTable";
                 List<cdmis_class> cdmis_Classes = new List<cdmis_class>();
+                List<drug_class> drug_Classes = new List<drug_class>();
+                List<drug_class> drug_Classes_buf = new List<drug_class>();
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    Console.WriteLine("連接成功!");
+                    using (SqlCommand command = new SqlCommand(query_drug, connection))
+                    {
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                drug_class drug_Class = new drug_class();
+                                drug_Class.藥碼 = reader["DrugCode"].ToString();
+                                drug_Class.藥名 = reader["DrugName"].ToString();
+                                drug_Class.藥師證字 = reader["NHI_Code"].ToString().Trim();
+                                drug_Class.管制級別 = reader["DrugDegree"].ToString();
+                                if (drug_Class.藥碼.Length < 5) drug_Class.藥碼 = "0" + drug_Class.藥碼;
+                                if (drug_Class.藥碼.Length < 5) drug_Class.藥碼 = "0" + drug_Class.藥碼;
+                                if (drug_Class.藥碼.Length < 5) drug_Class.藥碼 = "0" + drug_Class.藥碼;
+                                if (drug_Class.藥碼.Length < 5) drug_Class.藥碼 = "0" + drug_Class.藥碼;
+                                drug_Classes.Add(drug_Class);
+                            }
+                       
+                        }
+                    }
+                }
+
+
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
@@ -273,6 +310,11 @@ namespace DB2VM_API
                             while (reader.Read())
                             {
                                 string 藥碼 = reader["DrugCode"].ToString();
+                                if (藥碼.Length < 5) 藥碼 = "0" + 藥碼;
+                                if (藥碼.Length < 5) 藥碼 = "0" + 藥碼;
+                                if (藥碼.Length < 5) 藥碼 = "0" + 藥碼;
+                                if (藥碼.Length < 5) 藥碼 = "0" + 藥碼;
+
                                 string 藥名 = reader["DrugName"].ToString();
                                 string 藥局 = reader["CabinetName"].ToString();
                                 if (藥局 == "門診藥局管2") 藥局 = "ER";
@@ -360,10 +402,20 @@ namespace DB2VM_API
                     cdmis_Classes_buf = (from temp in cdmis_Classes
                                          where temp.藥碼 == Codes[i]
                                          select temp).ToList();
+                    drug_Classes_buf = (from temp in drug_Classes
+                                        where temp.藥碼 == Codes[i]
+                                        select temp).ToList();
+
                     SheetClass sheetClass = loadText.JsonDeserializet<SheetClass>();
                     sheetClass.Name = $"{Codes[i]}";
                     sheetClass.ReplaceCell(1, 1, $"{cdmis_Classes_buf[0].藥名}");
                     sheetClass.ReplaceCell(1, 4, $"{cdmis_Classes_buf[0].藥名}");
+                    if (drug_Classes_buf.Count > 0)
+                    {
+                        sheetClass.ReplaceCell(1, 7, $"衛署藥製字第{drug_Classes_buf[0].藥師證字}");
+                        sheetClass.ReplaceCell(4, 1, $"{drug_Classes_buf[0].管制級別}");
+
+                    }
                     for (int k = 0; k < cdmis_Classes_buf.Count; k++)
                     {
                         sheetClass.AddNewCell_Webapi(8 + k, 0, $"{cdmis_Classes_buf[k].交易時間}", "微軟正黑體", 12, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);

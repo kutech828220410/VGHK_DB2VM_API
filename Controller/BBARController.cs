@@ -19,7 +19,18 @@ namespace DB2VM
     [ApiController]
     public class BBARController : ControllerBase
     {
- 
+        private enum enum_藥袋17_2
+        {
+            藥袋類型 = 0,
+            病人姓名 = 4,
+            藥品碼 = 14,
+            使用數量 = 9,
+            病歷號 = 10,
+            開方日期 = 11,
+            開方時間 = 13,
+            頻次 = 7,
+            途徑 = 8,
+        }
         private enum enum_藥袋17_1
         {
             病房 = 1,
@@ -100,6 +111,46 @@ namespace DB2VM
         static string MySQL_port = $"{ConfigurationManager.AppSettings["MySQL_port"]}";
 
         private SQLControl sQLControl_UDSDBBCM = new SQLControl(MySQL_server, MySQL_database, "UDSDBBCM", MySQL_userid, MySQL_password, (uint)MySQL_port.StringToInt32(), MySql.Data.MySqlClient.MySqlSslMode.None);
+        private string API_Server = "http://127.0.0.1:4433";
+        [HttpGet]
+        public string GET(string? barcode)
+        {
+            MyTimerBasic myTimer = new MyTimerBasic();
+            myTimer.StartTickTime(50000);
+            returnData returnData = new returnData();
+            returnData.Method = "get_order";
+            try
+            {
+                OrderClass orderClass = ParseBarcodeToOrderClass(barcode, out returnData);
+                if(returnData.Code != 200)
+                {
+                    return returnData.JsonSerializationt(true);
+                }
+               
+
+                List<OrderClass> orderClasses = OrderClass.get_by_barcode(API_Server, orderClass.藥袋條碼);
+                List<OrderClass> orderClasses_add = new List<OrderClass>();
+                List<OrderClass> orderClasses_update = new List<OrderClass>();
+                if (orderClasses.Count == 0)
+                {
+                    orderClass.狀態 = "未過帳";
+                    orderClasses_add.Add(orderClass);
+                    orderClasses = OrderClass.add(API_Server, orderClasses_add);
+                }
+                returnData.TimeTaken = myTimer.ToString();
+                returnData.Code = 200;
+                returnData.Value = barcode;
+                returnData.Data = orderClasses;
+                returnData.Result = $"取得醫令成功,新增<{orderClasses_add.Count}>筆,修改<{orderClasses_update.Count}>筆,共<{orderClasses.Count}>筆";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = $"{e.Message}";
+                return returnData.JsonSerializationt(true);
+            }
+        }
 
         [Route("protal")]
         [HttpGet]
@@ -295,7 +346,6 @@ namespace DB2VM
             }
         }
 
-
         [Route("order_checkin")]
         [HttpPost]
         public string POST_order_checkin(returnData returnData)
@@ -396,6 +446,161 @@ namespace DB2VM
                 returnData.Result = $"{e.Message}";
                 return returnData.JsonSerializationt(true);
             }
+        }
+
+
+        public OrderClass ParseBarcodeToOrderClass(string barcode, out returnData returnData)
+        {
+            returnData = new returnData();
+            string[] order_ary = barcode.Split('~');
+            int type = 1;
+
+            if (order_ary.Length <= 2)
+            {
+                order_ary = barcode.Split(';');
+                type = 2;
+            }
+
+            for (int i = 0; i < order_ary.Length; i++)
+            {
+                order_ary[i] = order_ary[i].Trim();
+            }
+
+            OrderClass orderClass = new OrderClass();
+
+            try
+            {
+                if (type == 1)
+                {
+                    switch (order_ary.Length)
+                    {
+                        case 17:
+                            orderClass.GUID = Guid.NewGuid().ToString();
+                            orderClass.藥袋條碼 = barcode;
+                            orderClass.藥品碼 = order_ary[(int)enum_藥袋17_1.藥品碼].ObjectToString();
+                            orderClass.藥品名稱 = order_ary[(int)enum_藥袋17_1.藥品名稱].ObjectToString();
+                            orderClass.劑量單位 = order_ary[(int)enum_藥袋17_1.包裝單位].ObjectToString();
+                            orderClass.交易量 = (order_ary[(int)enum_藥袋17_1.總量].ObjectToString().Trim().StringToInt32() * -1).ToString();
+                            orderClass.頻次 = order_ary[(int)enum_藥袋17_1.頻次].ObjectToString();
+                            orderClass.病歷號 = order_ary[(int)enum_藥袋17_1.病歷號].ObjectToString();
+                            orderClass.病人姓名 = order_ary[(int)enum_藥袋17_1.病人姓名].ObjectToString();
+                            orderClass.病房 = order_ary[(int)enum_藥袋17_1.病房].ObjectToString().Split('-')[0].Trim();
+                            orderClass.開方日期 = $"{order_ary[(int)enum_藥袋17_1.開方日期]} {order_ary[(int)enum_藥袋17_1.開方時間]}";
+                            break;
+
+                        case 18:
+                            orderClass.GUID = Guid.NewGuid().ToString();
+                            orderClass.藥袋條碼 = barcode;
+                            orderClass.藥品碼 = order_ary[(int)enum_藥袋18_1.藥品碼].ObjectToString();
+                            orderClass.領藥號 = order_ary[(int)enum_藥袋18_1.領藥號].ObjectToString();
+                            orderClass.藥品名稱 = order_ary[(int)enum_藥袋18_1.藥品名稱].ObjectToString();
+                            orderClass.劑量單位 = order_ary[(int)enum_藥袋18_1.包裝單位].ObjectToString();
+                            orderClass.交易量 = (order_ary[(int)enum_藥袋18_1.總量].ObjectToString().Trim().StringToInt32() * -1).ToString();
+                            orderClass.頻次 = order_ary[(int)enum_藥袋18_1.頻次].ObjectToString();
+                            orderClass.病歷號 = order_ary[(int)enum_藥袋18_1.病歷號].ObjectToString();
+                            orderClass.病人姓名 = order_ary[(int)enum_藥袋18_1.病人姓名].ObjectToString();
+                            orderClass.病房 = order_ary[(int)enum_藥袋18_1.病房].ObjectToString().Split('-')[0].Trim();
+                            orderClass.開方日期 = $"{order_ary[(int)enum_藥袋18_1.開方日期]} {order_ary[(int)enum_藥袋18_1.開方時間]}";
+                            break;
+
+                        case 19:
+                            orderClass.GUID = Guid.NewGuid().ToString();
+                            orderClass.藥袋條碼 = barcode;
+                            orderClass.藥品碼 = order_ary[(int)enum_藥袋19_1.藥品碼].ObjectToString();
+                            orderClass.領藥號 = order_ary[(int)enum_藥袋19_1.領藥號].ObjectToString();
+                            orderClass.藥品名稱 = order_ary[(int)enum_藥袋19_1.藥品名稱].ObjectToString();
+                            orderClass.劑量單位 = order_ary[(int)enum_藥袋19_1.包裝單位].ObjectToString();
+                            orderClass.交易量 = (order_ary[(int)enum_藥袋19_1.總量].ObjectToString().Trim().StringToInt32() * -1).ToString();
+                            orderClass.頻次 = order_ary[(int)enum_藥袋19_1.頻次].ObjectToString();
+                            orderClass.病歷號 = order_ary[(int)enum_藥袋19_1.病歷號].ObjectToString();
+                            orderClass.病人姓名 = order_ary[(int)enum_藥袋19_1.病人姓名].ObjectToString();
+                            orderClass.病房 = order_ary[(int)enum_藥袋19_1.病房].ObjectToString().Split('-')[0].Trim();
+                            orderClass.開方日期 = $"{order_ary[(int)enum_藥袋19_1.開方日期]} {order_ary[(int)enum_藥袋19_1.開方時間]}";
+                            break;
+
+                        case 12:
+                            orderClass.GUID = Guid.NewGuid().ToString();
+                            orderClass.藥袋條碼 = barcode;
+                            orderClass.領藥號 = order_ary[(int)enum_藥袋12_1.領藥號].ObjectToString();
+                            orderClass.藥品碼 = order_ary[(int)enum_藥袋12_1.藥品碼].ObjectToString();
+                            orderClass.藥品名稱 = order_ary[(int)enum_藥袋12_1.藥品名稱].ObjectToString();
+                            orderClass.劑量單位 = order_ary[(int)enum_藥袋12_1.包裝單位].ObjectToString();
+                            orderClass.交易量 = (order_ary[(int)enum_藥袋12_1.總量].ObjectToString().Trim().StringToInt32() * -1).ToString();
+                            orderClass.頻次 = order_ary[(int)enum_藥袋12_1.頻次].ObjectToString();
+                            orderClass.病歷號 = order_ary[(int)enum_藥袋12_1.病歷號].ObjectToString();
+                            orderClass.病房 = order_ary[(int)enum_藥袋12_1.病房].ObjectToString().Split('-')[0].Trim();
+                            orderClass.開方日期 = $"{order_ary[(int)enum_藥袋12_1.開方日期]} {order_ary[(int)enum_藥袋12_1.開方時間]}";
+                            break;
+
+                        case 13:
+                            orderClass.GUID = Guid.NewGuid().ToString();
+                            orderClass.藥袋條碼 = barcode;
+                            orderClass.領藥號 = order_ary[(int)enum_藥袋13_1.領藥號].ObjectToString();
+                            orderClass.藥品碼 = order_ary[(int)enum_藥袋13_1.藥品碼].ObjectToString();
+                            orderClass.藥品名稱 = order_ary[(int)enum_藥袋13_1.藥品名稱].ObjectToString();
+                            orderClass.交易量 = (order_ary[(int)enum_藥袋13_1.總量].ObjectToString().Trim().StringToInt32() * -1).ToString();
+                            orderClass.頻次 = order_ary[(int)enum_藥袋13_1.頻次].ObjectToString();
+                            orderClass.病歷號 = order_ary[(int)enum_藥袋13_1.病歷號].ObjectToString();
+                            orderClass.病房 = order_ary[(int)enum_藥袋13_1.病房].ObjectToString().Split('-')[0].Trim();
+                            orderClass.開方日期 = $"{order_ary[(int)enum_藥袋13_1.開方日期]} {order_ary[(int)enum_藥袋13_1.開方時間]}";
+                            break;
+
+                        default:
+                            returnData.Code = -200;
+                            returnData.Result = $"Barcode 欄位數不符：{order_ary.Length}";
+                            return null;
+                    }
+                }
+                else if(type == 2)
+                {
+                    switch (order_ary.Length)
+                    {
+                        case 17:
+                            orderClass.GUID = Guid.NewGuid().ToString();
+                            orderClass.藥袋條碼 = barcode;
+                            orderClass.藥袋類型 = order_ary[(int)enum_藥袋17_2.藥袋類型].ObjectToString();
+                            orderClass.藥品碼 = order_ary[(int)enum_藥袋17_2.藥品碼].ObjectToString();
+                            orderClass.交易量 = (order_ary[(int)enum_藥袋17_2.使用數量].ObjectToString().Trim().StringToDouble() * -1).ToString();
+                            orderClass.頻次 = order_ary[(int)enum_藥袋17_2.頻次].ObjectToString();
+                            orderClass.途徑 = order_ary[(int)enum_藥袋17_2.途徑].ObjectToString();
+                            orderClass.病歷號 = order_ary[(int)enum_藥袋17_2.病歷號].ObjectToString();
+                            orderClass.病人姓名 = order_ary[(int)enum_藥袋17_2.病人姓名].ObjectToString();
+                            orderClass.開方日期 = $"{order_ary[(int)enum_藥袋17_2.開方日期]} {order_ary[(int)enum_藥袋17_2.開方時間].Substring(0, 2)}:{order_ary[(int)enum_藥袋17_2.開方時間].Substring(2, 2)}:00";
+                            break;
+
+                        default:
+                            returnData.Code = -200;
+                            returnData.Result = $"Barcode 欄位數不符：{order_ary.Length}";
+                            return null;
+                    }
+                }
+                else
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"Barcode 格式異常 (分號型)！";
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = $"解析失敗: {ex.Message}";
+                return null;
+            }
+
+            orderClass.PRI_KEY = orderClass.藥袋條碼;
+            if (orderClass.藥袋類型 == "2") orderClass.藥袋類型 = "門診";
+
+            medClass _medClass = medClass.get_med_clouds_by_code("http://127.0.0.1:4433", orderClass.藥品碼);
+            if (_medClass != null)
+            {
+                orderClass.藥品名稱 = _medClass.藥品名稱;
+                orderClass.劑量單位 = _medClass.包裝單位;
+            }      
+
+            returnData.Code = 200;
+            returnData.Result = "解析成功";
+            return orderClass;
         }
 
     }

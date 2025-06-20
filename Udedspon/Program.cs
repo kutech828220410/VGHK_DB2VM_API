@@ -58,7 +58,7 @@ namespace Udedspon
         static private string DiviceName = "protal";
         static void Main(string[] args)
         {
-            mutex = new System.Threading.Mutex(true, "OnlyRun");
+            mutex = new System.Threading.Mutex(true, "UdedsponBatch");
             if (mutex.WaitOne(0, false))
             {
                
@@ -72,13 +72,12 @@ namespace Udedspon
             {
                 try
                 {
-                    string json_med_Refresh = Net.WEBApiGet("http://192.168.110.73:443/dbvm/BBCM");
 
-                    List<HIS_DB_Lib.ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{Api_server}/api/ServerSetting");
-                    ServerSettingClass serverSettingClass = serverSettingClasses.MyFind(DiviceName, enum_ServerSetting_Type.傳送櫃, "醫囑資料");
-                    if (serverSettingClass == null) break;
-
-                    SQLControl sQLControl_醫囑資料 = new SQLControl(serverSettingClass.Server, serverSettingClass.DBName, "order_list", serverSettingClass.User, serverSettingClass.Password, serverSettingClass.Port.StringToUInt32(), MySql.Data.MySqlClient.MySqlSslMode.None);
+                    List<HIS_DB_Lib.sys_serverSettingClass> sys_serverSettingClasses = sys_serverSettingClassMethod.WebApiGet($"{Api_server}/api/serverSetting");
+                    sys_serverSettingClass sys_serverSettingClass = sys_serverSettingClasses.MyFind(DiviceName, enum_sys_serverSetting_Type.傳送櫃, "醫囑資料");
+                    if (sys_serverSettingClass == null) break;
+                    OrderClass.init(Api_server);
+                    SQLControl sQLControl_醫囑資料 = new SQLControl(sys_serverSettingClass.Server, sys_serverSettingClass.DBName, "order_list", sys_serverSettingClass.User, sys_serverSettingClass.Password, sys_serverSettingClass.Port.StringToUInt32(), MySql.Data.MySqlClient.MySqlSslMode.None);
                     sQLControl_醫囑資料 = new SQLControl("127.0.0.1", "protal", "order_list", "user", "66437068", 3306, MySql.Data.MySqlClient.MySqlSslMode.None);
                     string url_read = "https://zwmc01p.vghks.gov.tw:4436/UDTKService/ud/udtk/ReadUdedspon";
                     string url_write = " https://zwmc01p.vghks.gov.tw:4436/UDTKService/ud/udtk/WriteUdedspon";

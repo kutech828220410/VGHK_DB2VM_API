@@ -58,7 +58,8 @@ namespace Udedspon
         static private string DiviceName = "protal";
         static void Main(string[] args)
         {
-            mutex = new System.Threading.Mutex(true, "UdedsponBatch");
+            Console.Title = "急診傳送櫃處方下載";
+            mutex = new System.Threading.Mutex(true, "急診傳送櫃處方下載");
             if (mutex.WaitOne(0, false))
             {
                

@@ -3,10 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.32901.82
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DB2VM_API", "DB2VM_API.csproj", "{3D52BF28-AF7D-412F-B515-75786CF96BAD}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Udedspon", "Udedspon\Udedspon.csproj", "{D5C5E28D-4575-441A-AB26-EB55F633E36C}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UDFTPSTK4ConsoleApp", "UDFTPSTK4ConsoleApp\UDFTPSTK4ConsoleApp.csproj", "{B04423C1-FBF6-4A01-BA51-CE47DD47EC8A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "batch_Tohs_SQL_cmdi", "batch_Tohs_SQL_cmdi\batch_Tohs_SQL_cmdi.csproj", "{BB9310BE-1AC7-475C-8380-E336CC799AF0}"
@@ -15,20 +11,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "batch_TohsCopy", "batch_Toh
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "batch_東軒檔案複製", "batch_東軒檔案複製\batch_東軒檔案複製.csproj", "{C9DFDAAC-4E28-4120-853C-3D66B19EE2CE}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "batch_急診傳送櫃醫令", "batch_急診傳送櫃醫令\batch_急診傳送櫃醫令.csproj", "{DB8E0403-E9E3-4AAC-B354-C1504EA1EDB8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DB2VM_API", "dbvm_api\DB2VM_API.csproj", "{F6798800-CF62-4E92-8393-8F6FBA00EEF3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3D52BF28-AF7D-412F-B515-75786CF96BAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3D52BF28-AF7D-412F-B515-75786CF96BAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3D52BF28-AF7D-412F-B515-75786CF96BAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3D52BF28-AF7D-412F-B515-75786CF96BAD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D5C5E28D-4575-441A-AB26-EB55F633E36C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D5C5E28D-4575-441A-AB26-EB55F633E36C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D5C5E28D-4575-441A-AB26-EB55F633E36C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D5C5E28D-4575-441A-AB26-EB55F633E36C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B04423C1-FBF6-4A01-BA51-CE47DD47EC8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B04423C1-FBF6-4A01-BA51-CE47DD47EC8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B04423C1-FBF6-4A01-BA51-CE47DD47EC8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -45,6 +37,14 @@ Global
 		{C9DFDAAC-4E28-4120-853C-3D66B19EE2CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C9DFDAAC-4E28-4120-853C-3D66B19EE2CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C9DFDAAC-4E28-4120-853C-3D66B19EE2CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB8E0403-E9E3-4AAC-B354-C1504EA1EDB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB8E0403-E9E3-4AAC-B354-C1504EA1EDB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB8E0403-E9E3-4AAC-B354-C1504EA1EDB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB8E0403-E9E3-4AAC-B354-C1504EA1EDB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6798800-CF62-4E92-8393-8F6FBA00EEF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6798800-CF62-4E92-8393-8F6FBA00EEF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6798800-CF62-4E92-8393-8F6FBA00EEF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6798800-CF62-4E92-8393-8F6FBA00EEF3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,7 +1,6 @@
 C:\Users\Administrator\source\repos\VGHK_DB2VM_API\batch_TohsCopy\bin\Release\batch_TohsCopy.exe.config
 C:\Users\Administrator\source\repos\VGHK_DB2VM_API\batch_TohsCopy\bin\Release\batch_TohsCopy.exe
 C:\Users\Administrator\source\repos\VGHK_DB2VM_API\batch_TohsCopy\bin\Release\batch_TohsCopy.pdb
-C:\Users\Administrator\source\repos\VGHK_DB2VM_API\batch_TohsCopy\bin\Release\Basic.dll
 C:\Users\Administrator\source\repos\VGHK_DB2VM_API\batch_TohsCopy\bin\Release\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\Administrator\source\repos\VGHK_DB2VM_API\batch_TohsCopy\bin\Release\System.Buffers.dll
 C:\Users\Administrator\source\repos\VGHK_DB2VM_API\batch_TohsCopy\bin\Release\System.Memory.dll
@@ -53,3 +52,9 @@ C:\Users\Administrator\source\repos\VGHK_DB2VM_API\batch_TohsCopy\obj\Release\ba
 C:\Users\Administrator\source\repos\VGHK_DB2VM_API\batch_TohsCopy\obj\Release\batch_TohsCopy.csproj.CopyComplete
 C:\Users\Administrator\source\repos\VGHK_DB2VM_API\batch_TohsCopy\obj\Release\batch_TohsCopy.exe
 C:\Users\Administrator\source\repos\VGHK_DB2VM_API\batch_TohsCopy\obj\Release\batch_TohsCopy.pdb
+C:\Users\Administrator\source\repos\VGHK_DB2VM_API\batch_TohsCopy\bin\Release\Basic.dll
+C:\Users\Administrator\source\repos\VGHK_DB2VM_API\batch_TohsCopy\bin\Release\NPOI.dll
+C:\Users\Administrator\source\repos\VGHK_DB2VM_API\batch_TohsCopy\bin\Release\NPOI.OOXML.dll
+C:\Users\Administrator\source\repos\VGHK_DB2VM_API\batch_TohsCopy\bin\Release\NPOI.OpenXml4Net.dll
+C:\Users\Administrator\source\repos\VGHK_DB2VM_API\batch_TohsCopy\bin\Release\NPOI.OpenXmlFormats.dll
+C:\Users\Administrator\source\repos\VGHK_DB2VM_API\batch_TohsCopy\bin\Release\ICSharpCode.SharpZipLib.dll

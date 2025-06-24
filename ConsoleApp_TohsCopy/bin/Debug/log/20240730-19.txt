@@ -1,6 +1,0 @@
-20240730-19:22:45 - Exception : 回應狀態碼未表示成功: 404 (Not Found)。
-20240730-19:23:11 - Exception : 回應狀態碼未表示成功: 404 (Not Found)。
-20240730-19:23:23 - Exception : 回應狀態碼未表示成功: 404 (Not Found)。
-20240730-19:25:30 - [DownloadFileAsync] http://10.18.1.146:4435/Tohs/download/ITUD0031    C:\importcabinet.csv  ....ok
-20240730-19:27:54 - [DownloadFileAsync] http://10.18.1.146:4435/Tohs/download/ITUD0031    C:\importcabinet.csv  ....ok
-20240730-19:27:54 - [DownloadFileAsync] http://10.18.1.146:4435/Tohs/download/UDMORQRE    C:\cabinet.csv  ....ok

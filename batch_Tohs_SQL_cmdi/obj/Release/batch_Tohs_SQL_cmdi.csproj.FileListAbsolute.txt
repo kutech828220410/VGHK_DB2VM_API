@@ -1,7 +1,6 @@
 C:\Users\Administrator\source\repos\VGHK_DB2VM_API\batch_Tohs_SQL_cmdi\bin\Release\batch_Tohs_SQL_cmdi.exe.config
 C:\Users\Administrator\source\repos\VGHK_DB2VM_API\batch_Tohs_SQL_cmdi\bin\Release\batch_Tohs_SQL_cmdi.exe
 C:\Users\Administrator\source\repos\VGHK_DB2VM_API\batch_Tohs_SQL_cmdi\bin\Release\batch_Tohs_SQL_cmdi.pdb
-C:\Users\Administrator\source\repos\VGHK_DB2VM_API\batch_Tohs_SQL_cmdi\bin\Release\Basic.dll
 C:\Users\Administrator\source\repos\VGHK_DB2VM_API\batch_Tohs_SQL_cmdi\bin\Release\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\Administrator\source\repos\VGHK_DB2VM_API\batch_Tohs_SQL_cmdi\bin\Release\System.Buffers.dll
 C:\Users\Administrator\source\repos\VGHK_DB2VM_API\batch_Tohs_SQL_cmdi\bin\Release\System.Memory.dll

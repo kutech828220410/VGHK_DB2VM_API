@@ -1,10 +1,7 @@
 C:\Users\Administrator\source\repos\VGHK_DB2VM_API\UDFTPSTK4ConsoleApp\bin\Release\UDFTPSTK4ConsoleApp.exe.config
 C:\Users\Administrator\source\repos\VGHK_DB2VM_API\UDFTPSTK4ConsoleApp\bin\Release\UDFTPSTK4ConsoleApp.exe
 C:\Users\Administrator\source\repos\VGHK_DB2VM_API\UDFTPSTK4ConsoleApp\bin\Release\UDFTPSTK4ConsoleApp.pdb
-C:\Users\Administrator\source\repos\VGHK_DB2VM_API\UDFTPSTK4ConsoleApp\bin\Release\Basic.dll
-C:\Users\Administrator\source\repos\VGHK_DB2VM_API\UDFTPSTK4ConsoleApp\bin\Release\HIS_DB_Lib.dll
 C:\Users\Administrator\source\repos\VGHK_DB2VM_API\UDFTPSTK4ConsoleApp\bin\Release\MySql.Data.dll
-C:\Users\Administrator\source\repos\VGHK_DB2VM_API\UDFTPSTK4ConsoleApp\bin\Release\SQLUI.dll
 C:\Users\Administrator\source\repos\VGHK_DB2VM_API\UDFTPSTK4ConsoleApp\bin\Release\MyUI.dll
 C:\Users\Administrator\source\repos\VGHK_DB2VM_API\UDFTPSTK4ConsoleApp\bin\Release\System.Text.Json.dll
 C:\Users\Administrator\source\repos\VGHK_DB2VM_API\UDFTPSTK4ConsoleApp\bin\Release\Newtonsoft.Json.dll
@@ -72,3 +69,6 @@ C:\Users\Administrator\source\repos\VGHK_DB2VM_API\UDFTPSTK4ConsoleApp\obj\Relea
 C:\Users\Administrator\source\repos\VGHK_DB2VM_API\UDFTPSTK4ConsoleApp\obj\Release\UDFTPSTK4ConsoleApp.csproj.CopyComplete
 C:\Users\Administrator\source\repos\VGHK_DB2VM_API\UDFTPSTK4ConsoleApp\obj\Release\UDFTPSTK4ConsoleApp.exe
 C:\Users\Administrator\source\repos\VGHK_DB2VM_API\UDFTPSTK4ConsoleApp\obj\Release\UDFTPSTK4ConsoleApp.pdb
+C:\Users\Administrator\source\repos\VGHK_DB2VM_API\UDFTPSTK4ConsoleApp\bin\Release\Basic.dll
+C:\Users\Administrator\source\repos\VGHK_DB2VM_API\UDFTPSTK4ConsoleApp\bin\Release\HIS_DB_Lib.dll
+C:\Users\Administrator\source\repos\VGHK_DB2VM_API\UDFTPSTK4ConsoleApp\bin\Release\SQLUI.dll

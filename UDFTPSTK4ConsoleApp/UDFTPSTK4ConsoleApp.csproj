@@ -38,14 +38,16 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\0.DLL\Basic.dll</HintPath>
     </Reference>
-    <Reference Include="HIS_DB_Lib">
+    <Reference Include="HIS_DB_Lib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\0.DLL\HIS_DB_Lib.dll</HintPath>
     </Reference>
     <Reference Include="MySql.Data, Version=6.8.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\0.DLL\MySql.Data.dll</HintPath>
     </Reference>
-    <Reference Include="SQLUI">
+    <Reference Include="SQLUI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\0.DLL\SQLUI.dll</HintPath>
     </Reference>
     <Reference Include="System" />

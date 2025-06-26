@@ -104,6 +104,27 @@ namespace DB2VM
             開方日期 = 11,
             開方時間 = 12,
         }
+
+        public enum enum_出院帶藥
+        {
+            藥袋類型,       // [0]
+            身分證號碼,     // [1]
+            空欄位_2,       // [2] 無欄位名稱，先以佔位命名
+            出生日期,       // [3]
+            病人姓名,       // [4]
+            空欄位_5,       // [5] 無欄位名稱，先以佔位命名
+            單次劑量,       // [6]
+            頻次,           // [7]
+            途徑,           // [8]
+            總量,         // [9]
+            病歷號,       // [10]
+            開方日期,       // [11]
+            空欄位_12,      // [12]
+            空欄位_13,      // [13]
+            藥品碼,         // [14]
+            領藥號,         // [15]
+            備註            // [16]
+        }
         static string MySQL_server = $"{ConfigurationManager.AppSettings["MySQL_server"]}";
         static string MySQL_database = $"{ConfigurationManager.AppSettings["MySQL_database"]}";
         static string MySQL_userid = $"{ConfigurationManager.AppSettings["MySQL_user"]}";
@@ -151,7 +172,96 @@ namespace DB2VM
                 return returnData.JsonSerializationt(true);
             }
         }
+        [Route("ud_order")]
+        [HttpGet]
+        public string GET_ud_order(string? barcode)
+        {
+            MyTimerBasic myTimer = new MyTimerBasic();
+            myTimer.StartTickTime(50000);
+            returnData returnData = new returnData();
+            returnData.Method = "ud_order";
+            try
+            {
+                int type = 0;
+                List<OrderClass> orderClasses = new List<OrderClass>();
+                List<OrderClass> orderClasses_add = new List<OrderClass>();
+                OrderClass orderClass = new OrderClass();
+                string[] order_ary = barcode.Split('~');
+                type = 1;
+                if (order_ary.Length <= 2)
+                {
+                    order_ary = barcode.Split(';');
+                    type = 2;
+                }
+                if(type == 2)
+                {
+                    if (order_ary.Length == 17)
+                    {
+                        string code = order_ary[(int)enum_出院帶藥.藥品碼].ObjectToString().Trim();
+                        medClass medClass = medClass.get_med_clouds_by_code(API_Server, code);
+                        if(medClass == null)
+                        {
+                            returnData.Code = -200;
+                            returnData.Result = $"找無藥品({code})";
+                            return returnData.JsonSerializationt(true);
+                        }
+                        orderClass.GUID = Guid.NewGuid().ToString();
+                        if(order_ary[(int)enum_出院帶藥.藥袋類型].ObjectToString() == "1")
+                        {
+                            orderClass.藥袋類型 = "出院帶藥";
+                        }
+                        orderClass.GUID = Guid.NewGuid().ToString();
+                        orderClass.PRI_KEY = barcode;
+                        orderClass.藥局代碼 = "UD";
+                        orderClass.藥袋條碼 = barcode;
+                        orderClass.藥品碼 = order_ary[(int)enum_出院帶藥.藥品碼].ObjectToString();
+                        orderClass.藥品名稱 = medClass.藥品名稱;
+                        orderClass.劑量單位 = medClass.包裝單位;
+                        orderClass.交易量 = (order_ary[(int)enum_出院帶藥.總量].ObjectToString().Trim().StringToInt32() * -1).ToString();
+                        orderClass.頻次 = order_ary[(int)enum_出院帶藥.頻次].ObjectToString().Trim();
+                        orderClass.病歷號 = order_ary[(int)enum_出院帶藥.病歷號].ObjectToString().Trim();
+                        orderClass.病人姓名 = order_ary[(int)enum_出院帶藥.病人姓名].ObjectToString().Trim();                  
+                        string 日期 = order_ary[(int)enum_出院帶藥.開方日期].ObjectToString();
+                        string 時間 = "00:00:00";
+                        string date_str = $"{日期} {時間}";
+                        orderClass.開方日期 = date_str;
+                        orderClass.狀態 = "未過帳";
+                        orderClasses = OrderClass.get_by_barcode(API_Server, barcode);
+                        if(orderClasses.Count > 0)
+                        {
+                            returnData.TimeTaken = myTimer.ToString();
+                            returnData.Code = 200;
+                            returnData.Value = barcode;
+                            returnData.Data = orderClasses;
+                            returnData.Result = $"取得醫令成功,共<{orderClasses.Count}>筆";
+                            return returnData.JsonSerializationt(true);
+                        }
+                        orderClasses_add.Add(orderClass);
+                        OrderClass.add(API_Server, orderClasses);
 
+                        returnData.TimeTaken = myTimer.ToString();
+                        returnData.Code = 200;
+                        returnData.Value = barcode;
+                        returnData.Data = orderClasses_add;
+                        returnData.Result = $"取得醫令成功!共<{orderClasses_add.Count}>筆,新增<{orderClasses_add.Count}>筆";
+                        return returnData.JsonSerializationt(true);
+                    }
+                }
+             
+                returnData.TimeTaken = myTimer.ToString();
+                returnData.Code = 200;
+                returnData.Value = barcode;
+                returnData.Data = orderClasses;
+                returnData.Result = $"取得醫令成功!共<{orderClasses.Count}>筆";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = $"{e.Message}";
+                return returnData.JsonSerializationt(true);
+            }
+        }
         [Route("protal")]
         [HttpGet]
         public string GET_protal(string? barcode)
@@ -277,6 +387,7 @@ namespace DB2VM
                 }
                 else if (type == 2)
                 {
+                  
                     returnData.Code = -200;
                     returnData.Result = $"Barcode格式異常!";
                     return returnData.JsonSerializationt(true);

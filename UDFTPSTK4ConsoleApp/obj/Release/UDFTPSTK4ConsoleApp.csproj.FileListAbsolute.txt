@@ -50,7 +50,6 @@ C:\Users\Administrator\source\repos\VGHK_DB2VM_API\UDFTPSTK4ConsoleApp\bin\Relea
 C:\Users\Administrator\source\repos\VGHK_DB2VM_API\UDFTPSTK4ConsoleApp\bin\Release\NPOI.OpenXmlFormats.dll
 C:\Users\Administrator\source\repos\VGHK_DB2VM_API\UDFTPSTK4ConsoleApp\bin\Release\stdole.dll
 C:\Users\Administrator\source\repos\VGHK_DB2VM_API\UDFTPSTK4ConsoleApp\bin\Release\Basic.xml
-C:\Users\Administrator\source\repos\VGHK_DB2VM_API\UDFTPSTK4ConsoleApp\bin\Release\HIS_DB_Lib.pdb
 C:\Users\Administrator\source\repos\VGHK_DB2VM_API\UDFTPSTK4ConsoleApp\bin\Release\HIS_DB_Lib.xml
 C:\Users\Administrator\source\repos\VGHK_DB2VM_API\UDFTPSTK4ConsoleApp\bin\Release\HIS_DB_Lib.dll.config
 C:\Users\Administrator\source\repos\VGHK_DB2VM_API\UDFTPSTK4ConsoleApp\bin\Release\SQLUI.xml

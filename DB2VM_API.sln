@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "batch_急診傳送櫃醫令
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DB2VM_API", "dbvm_api\DB2VM_API.csproj", "{F6798800-CF62-4E92-8393-8F6FBA00EEF3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "batch_UD醫令及出入庫", "batch_UD醫令及出入庫\batch_UD醫令及出入庫.csproj", "{8CEC2206-2E1C-4EF4-9D1B-F2EC1760690D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{F6798800-CF62-4E92-8393-8F6FBA00EEF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6798800-CF62-4E92-8393-8F6FBA00EEF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F6798800-CF62-4E92-8393-8F6FBA00EEF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CEC2206-2E1C-4EF4-9D1B-F2EC1760690D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CEC2206-2E1C-4EF4-9D1B-F2EC1760690D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CEC2206-2E1C-4EF4-9D1B-F2EC1760690D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CEC2206-2E1C-4EF4-9D1B-F2EC1760690D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

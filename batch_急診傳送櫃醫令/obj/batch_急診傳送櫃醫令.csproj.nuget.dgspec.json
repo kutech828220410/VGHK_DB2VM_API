@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Administrator\\source\\repos\\VGHK_DB2VM_API\\batch_急診傳送櫃醫令\\batch_急診傳送櫃醫令.csproj": {}
+    "C:\\Users\\Administrator\\Source\\Repos\\VGHK_DB2VM_API\\batch_急診傳送櫃醫令\\batch_急診傳送櫃醫令.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Administrator\\source\\repos\\VGHK_DB2VM_API\\batch_急診傳送櫃醫令\\batch_急診傳送櫃醫令.csproj": {
+    "C:\\Users\\Administrator\\Source\\Repos\\VGHK_DB2VM_API\\batch_急診傳送櫃醫令\\batch_急診傳送櫃醫令.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Administrator\\source\\repos\\VGHK_DB2VM_API\\batch_急診傳送櫃醫令\\batch_急診傳送櫃醫令.csproj",
+        "projectUniqueName": "C:\\Users\\Administrator\\Source\\Repos\\VGHK_DB2VM_API\\batch_急診傳送櫃醫令\\batch_急診傳送櫃醫令.csproj",
         "projectName": "batch_急診傳送櫃醫令",
-        "projectPath": "C:\\Users\\Administrator\\source\\repos\\VGHK_DB2VM_API\\batch_急診傳送櫃醫令\\batch_急診傳送櫃醫令.csproj",
+        "projectPath": "C:\\Users\\Administrator\\Source\\Repos\\VGHK_DB2VM_API\\batch_急診傳送櫃醫令\\batch_急診傳送櫃醫令.csproj",
         "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Administrator\\source\\repos\\VGHK_DB2VM_API\\batch_急診傳送櫃醫令\\obj\\",
+        "outputPath": "C:\\Users\\Administrator\\Source\\Repos\\VGHK_DB2VM_API\\batch_急診傳送櫃醫令\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",

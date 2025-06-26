@@ -52,3 +52,4 @@ C:\Users\Administrator\source\repos\VGHK_DB2VM_API\batch_東軒檔案複製\obj\
 C:\Users\Administrator\source\repos\VGHK_DB2VM_API\batch_東軒檔案複製\obj\Release\batch_東軒檔案複製.csproj.CopyComplete
 C:\Users\Administrator\source\repos\VGHK_DB2VM_API\batch_東軒檔案複製\obj\Release\batch_東軒檔案複製.exe
 C:\Users\Administrator\source\repos\VGHK_DB2VM_API\batch_東軒檔案複製\obj\Release\batch_東軒檔案複製.pdb
+C:\Users\Administrator\Source\Repos\VGHK_DB2VM_API\batch_東軒檔案複製\bin\Release\Basic.dll

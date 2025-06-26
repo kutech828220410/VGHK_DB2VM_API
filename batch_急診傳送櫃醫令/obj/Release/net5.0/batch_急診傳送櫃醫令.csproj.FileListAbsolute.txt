@@ -164,7 +164,6 @@ C:\Users\Administrator\source\repos\VGHK_DB2VM_API\batch_急診傳送櫃醫令\b
 C:\Users\Administrator\source\repos\VGHK_DB2VM_API\batch_急診傳送櫃醫令\bin\Release\net5.0\NPOI.OpenXmlFormats.dll
 C:\Users\Administrator\source\repos\VGHK_DB2VM_API\batch_急診傳送櫃醫令\bin\Release\net5.0\stdole.dll
 C:\Users\Administrator\source\repos\VGHK_DB2VM_API\batch_急診傳送櫃醫令\bin\Release\net5.0\Basic.xml
-C:\Users\Administrator\source\repos\VGHK_DB2VM_API\batch_急診傳送櫃醫令\bin\Release\net5.0\HIS_DB_Lib.pdb
 C:\Users\Administrator\source\repos\VGHK_DB2VM_API\batch_急診傳送櫃醫令\bin\Release\net5.0\HIS_DB_Lib.xml
 C:\Users\Administrator\source\repos\VGHK_DB2VM_API\batch_急診傳送櫃醫令\bin\Release\net5.0\HIS_DB_Lib.dll.config
 C:\Users\Administrator\source\repos\VGHK_DB2VM_API\batch_急診傳送櫃醫令\bin\Release\net5.0\SQLUI.xml

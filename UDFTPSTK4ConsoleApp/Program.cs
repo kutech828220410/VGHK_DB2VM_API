@@ -5,130 +5,205 @@ using System.Text;
 using System.Threading.Tasks;
 using HIS_DB_Lib;
 using Basic;
-using SQLUI;
-namespace UDFTPSTK4ConsoleApp
+namespace batch_UD管4批領
 {
     class Program
     {
-        public enum enum_UDFTPSTK4
+        public class UDFTPSTK4
         {
-            GUID,
-            藥碼,
-            藥名,
-            病房,
-            床號,
-            病歷號,
-            病人姓名,
-            交易量,
-            日期,
-            加入時間,
+            /// <summary>
+            /// 唯一識別碼
+            /// </summary>
+            public string GUID { get; set; }
+
+            /// <summary>
+            /// 藥品代碼
+            /// </summary>
+            public string 藥碼 { get; set; }
+
+            /// <summary>
+            /// 藥品名稱
+            /// </summary>
+            public string 藥名 { get; set; }
+
+            /// <summary>
+            /// 病房名稱
+            /// </summary>
+            public string 病房 { get; set; }
+
+            /// <summary>
+            /// 床號
+            /// </summary>
+            public string 床號 { get; set; }
+
+            /// <summary>
+            /// 病歷號碼
+            /// </summary>
+            public string 病歷號 { get; set; }
+
+            /// <summary>
+            /// 病人姓名
+            /// </summary>
+            public string 病人姓名 { get; set; }
+
+            /// <summary>
+            /// 交易量
+            /// </summary>
+            public string 交易量 { get; set; }
+
+            /// <summary>
+            /// 日期 (格式: yyyy-MM-dd)
+            /// </summary>
+            public string 日期 { get; set; }
+
+            /// <summary>
+            /// 加入時間 (格式: yyyy-MM-dd HH:mm:ss)
+            /// </summary>
+            public string 加入時間 { get; set; }
         }
-        static private string server = "127.0.0.1";
-        static private string dbName = "dbvm_vghks_ud";
-        static private string tableName = "batch_med_list";
-        static private string user = "user";
-        static private string pwd = "66437068";
-        static private uint port = 3306;
+        static private string API_Server = "http://127.0.0.1:4433";
+
         static void Main(string[] args)
         {
-            Console.WriteLine("-------------------------住院批次檔處方-------------------------");
-            string dst_path = @"C:\Users\hsonds01\Desktop\UDFTPSTK4\";
-            string dst_filename = $@"UDFTPSTK4.TXT";
-            string new_dst_filename = $@"UDFTPSTK4_{DateTime.Now.ToDateString("_")}.TXT";
-            Basic.FileIO.CopyFile(@"Z:\UDFTPSTK4.TXT", $"{dst_path}{new_dst_filename}");
-            List<string> list_text = MyFileStream.LoadFile($"{dst_path}{new_dst_filename}");
-            SQLUI.SQLControl sQLControl = new SQLUI.SQLControl(server, dbName, tableName, user, pwd, port, MySql.Data.MySqlClient.MySqlSslMode.None);
-            Table table = new Table("");
-            table.TableName = tableName;
-            table.AddColumnList("GUID", Table.StringType.CHAR, 50, Table.IndexType.PRIMARY);
-            table.AddColumnList("藥碼", Table.StringType.CHAR, 50, Table.IndexType.INDEX);
-            table.AddColumnList("藥名", Table.StringType.CHAR, 200, Table.IndexType.None);
-            table.AddColumnList("病房", Table.StringType.CHAR, 50, Table.IndexType.None);
-            table.AddColumnList("床號", Table.StringType.CHAR, 50, Table.IndexType.None);
-            table.AddColumnList("病歷號", Table.StringType.CHAR, 50, Table.IndexType.None);
-            table.AddColumnList("病人姓名", Table.StringType.CHAR, 100, Table.IndexType.None);
-            table.AddColumnList("交易量", Table.StringType.CHAR, 50, Table.IndexType.None);
-            table.AddColumnList("日期", Table.DateType.DATETIME, 50, Table.IndexType.INDEX);
-            table.AddColumnList("加入時間", Table.DateType.DATETIME, 50, Table.IndexType.INDEX);
-            if (sQLControl.IsTableCreat() == false)
-            {                
-                sQLControl.CreatTable(table);
-            }
-            else
+            try
             {
-                sQLControl.CheckAllColumnName(table, true);
-            }
+                DateTime startTime = DateTime.Now;
+                Logger.Log("-------------------------住院批次檔處方-------------------------");
 
-            List<object[]> list_UDFTPSTK4 = new List<object[]>();
-            List<object[]> list_DB_UDFTPSTK4 = new List<object[]>();
-            List<object[]> list_DB_UDFTPSTK4_buf = new List<object[]>();
-            List<object[]> list_DB_UDFTPSTK4_add = new List<object[]>();
+                string dst_filename = $@"C:\batch\log_UDFTPSTK4\UDFTPSTK4_{DateTime.Now.ToDateString("")}.txt";
+                Logger.Log($"複製來源檔案 Y:\\UDFTPSTK4.TXT 至 {dst_filename}");
+                Basic.FileIO.CopyFile(@"Y:\UDFTPSTK4.TXT", $"{dst_filename}");
+                Logger.Log($"複製完成，耗時: {(DateTime.Now - startTime).TotalMilliseconds} ms");
 
-            for (int i = 0; i < list_text.Count; i++)
-            {
-                string[] testAry = list_text[i].Split('\t');
-                if(testAry.Length >= 7)
+                Logger.Log($"載入檔案 {dst_filename}");
+                List<string> list_text = MyFileStream.LoadFile($"{dst_filename}");
+                Logger.Log($"載入完成，共 {list_text.Count} 行，耗時: {(DateTime.Now - startTime).TotalMilliseconds} ms");
+
+                List<UDFTPSTK4> uDFTPSTK4s = new List<UDFTPSTK4>();
+                Logger.Log($"開始解析檔案");
+                DateTime parseStart = DateTime.Now;
+
+                for (int i = 0; i < list_text.Count; i++)
                 {
-                    string 藥名 = testAry[0].Trim();
-                    string 藥碼 = testAry[1].Trim();
-                    string 病房_床號 = testAry[2].Trim();
-                    string 病歷號 = testAry[3].Trim();
-                    string 病人姓名 = testAry[4].Trim();
-                    string 交易量 = testAry[5].Trim();
-                    string 日期 = testAry[6].Trim();
-                    string 病房 = "";
-                    string 床號 = "";
-
-                    string[] temp_Ary = 病房_床號.Split('-');
-                    if (temp_Ary.Length == 2)
+                    string[] testAry = list_text[i].Split('\t');
+                    if (testAry.Length >= 7)
                     {
-                        病房 = temp_Ary[0];
-                        床號 = temp_Ary[1];
+                        string 藥名 = testAry[0].Trim();
+                        string 藥碼 = testAry[1].Trim();
+                        string 病房_床號 = testAry[2].Trim();
+                        string 病歷號 = testAry[3].Trim();
+                        string 病人姓名 = testAry[4].Trim();
+                        string 交易量 = testAry[5].Trim();
+                        string 日期 = testAry[6].Trim();
+                        string 病房 = "";
+                        string 床號 = "";
+
+                        string[] temp_Ary = 病房_床號.Split('-');
+                        if (temp_Ary.Length == 2)
+                        {
+                            病房 = temp_Ary[0];
+                            床號 = temp_Ary[1];
+                        }
+
+                        if (交易量.StringIsDouble() == false) 交易量 = "0";
+                        else 交易量 = (交易量.StringToDouble() * -1).ToString();
+
+                        UDFTPSTK4 uDFTPSTK4 = new UDFTPSTK4()
+                        {
+                            藥碼 = 藥碼,
+                            藥名 = 藥名,
+                            病歷號 = 病歷號,
+                            病人姓名 = 病人姓名,
+                            交易量 = 交易量,
+                            日期 = 日期,
+                            病房 = 病房,
+                            床號 = 床號
+                        };
+
+                        uDFTPSTK4s.Add(uDFTPSTK4);
                     }
-                    object[] value = new object[new enum_UDFTPSTK4().GetLength()];
-                    value[(int)enum_UDFTPSTK4.藥碼] = 藥碼;
-                    value[(int)enum_UDFTPSTK4.藥名] = 藥名;
-                    value[(int)enum_UDFTPSTK4.病歷號] = 病歷號;
-                    value[(int)enum_UDFTPSTK4.病人姓名] = 病人姓名;
-                    value[(int)enum_UDFTPSTK4.交易量] = 交易量;
-                    value[(int)enum_UDFTPSTK4.日期] = 日期;
-                    value[(int)enum_UDFTPSTK4.病房] = 病房;
-                    value[(int)enum_UDFTPSTK4.床號] = 床號;
-
-                    list_UDFTPSTK4.Add(value);
                 }
+                Logger.Log($"解析完成，共取得 {uDFTPSTK4s.Count} 筆資料，耗時: {(DateTime.Now - parseStart).TotalMilliseconds} ms");
 
-            }
-            List<string> dates = (from temp in list_UDFTPSTK4
-                            select temp[(int)enum_UDFTPSTK4.日期].ObjectToString().StringToDateTime().ToDateString()).Distinct().ToList();
-            for (int i = 0; i < dates.Count; i++)
-            {
-                List<object[]> list_temp = sQLControl.GetRowsByDefult(null, (int)enum_UDFTPSTK4.日期, dates[i]);
-                list_DB_UDFTPSTK4.LockAdd(list_temp);
-            }
-            for(int i = 0; i< list_UDFTPSTK4.Count; i++)
-            {
-                string 藥碼 = list_UDFTPSTK4[i][(int)enum_UDFTPSTK4.藥碼].ObjectToString();
-                string 病歷號 = list_UDFTPSTK4[i][(int)enum_UDFTPSTK4.病歷號].ObjectToString();
-                string 交易量 = list_UDFTPSTK4[i][(int)enum_UDFTPSTK4.交易量].ObjectToString();
-                string 日期 = list_UDFTPSTK4[i][(int)enum_UDFTPSTK4.日期].ObjectToString();
-                list_DB_UDFTPSTK4_buf = (from temp in list_DB_UDFTPSTK4
-                                         where temp[(int)enum_UDFTPSTK4.藥碼].ObjectToString() == 藥碼
-                                         where temp[(int)enum_UDFTPSTK4.病歷號].ObjectToString() == 病歷號
-                                         where temp[(int)enum_UDFTPSTK4.交易量].ObjectToString() == 交易量
-                                         where temp[(int)enum_UDFTPSTK4.日期].ToDateString("-") == 日期
-                                         select temp).ToList();
-                if(list_DB_UDFTPSTK4_buf.Count == 0)
+                DateTime queryStart = DateTime.Now;
+                var range_date = GetUDFTPSTK4DateTimeRange(uDFTPSTK4s);
+                Logger.Log($"取得日期範圍: {range_date.minDateTime.ToString("yyyy-MM-dd HH:mm:ss")} ~ {range_date.maxDateTime.ToString("yyyy-MM-dd HH:mm:ss")}");
+
+                Logger.Log("查詢現有醫令資料...");
+                List<OrderClass> orderClasses = OrderClass.get_by_rx_time_st_end(API_Server, range_date.minDateTime, range_date.maxDateTime);
+                Logger.Log($"現有醫令資料筆數: {orderClasses.Count}，耗時: {(DateTime.Now - queryStart).TotalMilliseconds} ms");
+
+                DateTime matchStart = DateTime.Now;
+                List<OrderClass> orderClasses_add = new List<OrderClass>();
+                Dictionary<string, List<OrderClass>> keyValuePairs_orders = orderClasses.CoverToDictionaryBy_PRI_KEY();
+
+                Logger.Log("開始比對與新增醫令資料...");
+                for (int i = 0; i < uDFTPSTK4s.Count; i++)
                 {
-                    list_UDFTPSTK4[i][(int)enum_UDFTPSTK4.GUID] = Guid.NewGuid().ToString();
-                    list_UDFTPSTK4[i][(int)enum_UDFTPSTK4.加入時間] = DateTime.Now.ToDateTimeString_6();
-                    list_DB_UDFTPSTK4_add.Add(list_UDFTPSTK4[i]);
+                    UDFTPSTK4 uDFTPSTK4 = uDFTPSTK4s[i];
+                    string pri_key = $"{uDFTPSTK4.藥碼};{uDFTPSTK4.交易量};{uDFTPSTK4.病歷號};{uDFTPSTK4.日期}";
+
+                    var orderClasses_buf = keyValuePairs_orders.SortDictionaryBy_PRI_KEY(pri_key);
+                    if (orderClasses_buf.Count == 0)
+                    {
+                        OrderClass orderClass = new OrderClass
+                        {
+                            GUID = Guid.NewGuid().ToString(),
+                            PRI_KEY = pri_key,
+                            藥品碼 = uDFTPSTK4.藥碼,
+                            藥品名稱 = uDFTPSTK4.藥名,
+                            交易量 = uDFTPSTK4.交易量,
+                            病歷號 = uDFTPSTK4.病歷號,
+                            開方日期 = uDFTPSTK4.日期,
+                            病房 = uDFTPSTK4.病房,
+                            床號 = uDFTPSTK4.床號,
+                            病人姓名 = uDFTPSTK4.病人姓名,
+                            藥袋類型 = "UDFTPSTK4",
+                            藥局代碼 = "UD",
+                        };
+                        orderClasses_add.Add(orderClass);
+                        Logger.Log($"新增醫令資料: PRI_KEY={pri_key}");
+                    }
                 }
+                Logger.Log($"比對完成，需新增醫令資料: {orderClasses_add.Count} 筆，耗時: {(DateTime.Now - matchStart).TotalMilliseconds} ms");
+
+                if (orderClasses_add.Count > 0)
+                {
+                    DateTime addStart = DateTime.Now;
+                    Logger.Log($"即將新增 {orderClasses_add.Count} 筆醫令資料");
+                    OrderClass.add(API_Server, orderClasses_add);
+                    Logger.Log($"醫令資料新增完成，耗時: {(DateTime.Now - addStart).TotalMilliseconds} ms");
+                }
+                else
+                {
+                    Logger.Log("無需新增醫令資料");
+                }
+
+                Logger.Log($"整體流程完成，總耗時: {(DateTime.Now - startTime).TotalMilliseconds} ms");
             }
-            sQLControl.AddRows(null, list_DB_UDFTPSTK4_add);
-            Console.WriteLine($"共新增<{list_DB_UDFTPSTK4_add.Count}>筆資料!");
-            System.Threading.Thread.Sleep(2000);
-            //System.IO.File.Move($"{dst_path}{dst_filename}", $"{dst_path}{new_dst_filename}");
+            catch (Exception ex)
+            {
+                Logger.Log($"發生例外: {ex.Message}");
+                Logger.Log($"堆疊資訊: {ex.StackTrace}");
+            }
+
+
+        }
+        static public (DateTime minDateTime, DateTime maxDateTime) GetUDFTPSTK4DateTimeRange(List<UDFTPSTK4> list)
+        {
+            var dateList = list
+                .Select(x => DateTime.TryParse(x.日期, out var dt) ? dt : (DateTime?)null)
+                .Where(dt => dt.HasValue)
+                .Select(dt => dt.Value.Date)  // 只取日期部分
+                .ToList();
+
+            if (dateList.Count == 0)
+                return (DateTime.MinValue, DateTime.MinValue);
+
+            DateTime minDate = dateList.Min().Date.AddHours(0).AddMinutes(0).AddSeconds(0);
+            DateTime maxDate = dateList.Max().Date.AddHours(23).AddMinutes(59).AddSeconds(59);
+
+            return (minDate, maxDate);
         }
     }
 }
